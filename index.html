@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fvicon — Generador de Favicons Profesional</title>
+    <meta name="description" content="Diseña, previsualiza y exporta favicons en ICO, PNG y SVG. Herramienta gratuita que funciona 100% en tu navegador sin subir archivos a ningún servidor.">
+    <meta property="og:title" content="Fvicon — Favicon Studio by Loge">
+    <meta property="og:description" content="Crea favicons profesionales en segundos. 100% en tu navegador, sin subir archivos.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://fvicon.com/">
+    <meta property="og:image" content="https://fvicon.com/og-image.png">
+    <meta property="og:site_name" content="Fvicon">
+    <link rel="canonical" href="https://fvicon.com/">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="styles.css?v=2">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-effects">
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+    </div>
+    
+    <!-- Top-right language selector -->
+    <div class="language-wrapper fade-in">
+        <svg viewBox="0 0 24 24" fill="none" class="icon-globe" stroke="currentColor" stroke-width="2"><path d="M21 12A9 9 0 0112 21a9 9 0 01-9-9 9 9 0 0118 0z"></path><path d="M3.6 9h16.8M3.6 15h16.8M12 3a15.3 15.3 0 014 9 15.3 15.3 0 01-4 9 15.3 15.3 0 01-4-9 15.3 15.3 0 014-9z"></path></svg>
+        <select id="lang-select" class="lang-select">
+            <option value="es" selected>Español</option>
+            <option value="en">English</option>
+            <option value="fr">Français</option>
+            <option value="de">Deutsch</option>
+            <option value="it">Italiano</option>
+            <option value="pt">Português</option>
+        </select>
+    </div>
+
+    <div class="container fade-in">
+        <header>
+            <h1>Favicon <span class="accent">Studio</span></h1>
+            <p data-i18n="subtitle">Diseña, previsualiza y exporta el favicon perfecto para tu proyecto.</p>
+        </header>
+
+        <main class="app-grid">
+            <section class="controls-panel">
+                <div class="card drag-zone" id="drop-zone">
+                    <input type="file" id="file-input" accept="image/*" hidden>
+                    <div class="drag-content" id="drag-content-html">
+                        <div class="icon-wrapper">
+                            <svg class="icon-upload" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                            </svg>
+                        </div>
+                        <p class="drag-title" data-i18n="upload_title">Sube tu Logo</p>
+                        <p class="drag-desc" data-i18n="upload_desc">Arrastra un archivo o haz clic para buscar</p>
+                    </div>
+                </div>
+
+                <div class="card settings animate-slide-up" style="animation-delay: 0.1s;">
+                    <div class="card-header">
+                        <h3 data-i18n="settings">Ajustes de Diseño</h3>
+                    </div>
+                    
+                    <div class="setting-group">
+                        <label data-i18n="shape">Contorno</label>
+                        <div class="shape-selector">
+                            <label class="shape-option">
+                                <input type="radio" name="shape" value="none">
+                                <span class="shape-btn"><div class="shape-icon none" title="Sin contorno"></div></span>
+                            </label>
+                            <label class="shape-option">
+                                <input type="radio" name="shape" value="0">
+                                <span class="shape-btn"><div class="shape-icon square"></div></span>
+                            </label>
+                            <label class="shape-option">
+                                <input type="radio" name="shape" value="25" checked>
+                                <span class="shape-btn"><div class="shape-icon squircle"></div></span>
+                            </label>
+                            <label class="shape-option">
+                                <input type="radio" name="shape" value="50">
+                                <span class="shape-btn"><div class="shape-icon circle"></div></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="setting-group">
+                        <label for="bg-color" data-i18n="bg_color">Color de fondo</label>
+                        <div class="color-picker-wrapper">
+                            <div class="color-preview" id="color-preview-box" style="background-color: #ffffff;"></div>
+                            <input type="color" id="bg-color" value="#ffffff">
+                            <span id="color-value" class="mono-text">#FFFFFF</span>
+                        </div>
+                        <div class="color-presets" id="color-presets">
+                            <div class="color-chip active" data-color="#ffffff" style="background:#ffffff" title="Blanco"></div>
+                            <div class="color-chip" data-color="#18191f" style="background:#18191f" title="Negro"></div>
+                            <div class="color-chip" data-color="#5b6af0" style="background:#5b6af0" title="Azul"></div>
+                            <div class="color-chip" data-color="#ef4444" style="background:#ef4444" title="Rojo"></div>
+                            <div class="color-chip" data-color="#10b981" style="background:#10b981" title="Verde"></div>
+                            <div class="color-chip" data-color="#f59e0b" style="background:#f59e0b" title="Amarillo"></div>
+                        </div>
+                    </div>
+
+                    <div class="setting-group">
+                        <div class="label-row">
+                            <label for="logo-scale" data-i18n="logo_scale">Tamaño del Logo</label>
+                            <span class="value-badge"><span id="scale-value">100</span>%</span>
+                        </div>
+                        <input type="range" id="logo-scale" min="20" max="250" value="100">
+                    </div>
+
+                    <div class="setting-group">
+                        <label data-i18n="offset">Posicionamiento Fino (X, Y)</label>
+                        <div class="offset-controls">
+                            <div class="offset-input">
+                                <span>X</span>
+                                <input type="number" id="offset-x" value="0" step="1">
+                            </div>
+                            <div class="offset-input">
+                                <span>Y</span>
+                                <input type="number" id="offset-y" value="0" step="1">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="reset-btn" class="btn secondary animate-slide-up" style="animation-delay: 0.15s;" disabled>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182M20.016 4.66v4.993" />
+                    </svg>
+                    <span class="btn-text" data-i18n="btn_reset">Restablecer</span>
+                </button>
+            </section>
+
+            <section class="preview-panel">
+                <div class="card animate-slide-up" style="animation-delay: 0.2s;">
+                    <div class="tabs-header">
+                        <h3 data-i18n="preview_title">Previsualización en Vivo</h3>
+                    </div>
+                    
+                    <div class="browser-mockup">
+                        <div class="browser-header">
+                            <div class="browser-dots">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <div class="browser-tab active">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='25' fill='%23fff'/%3E%3C/svg%3E" alt="favicon" class="tab-favicon" id="tab-favicon-preview">
+                                <span class="tab-title" data-i18n="tab_title">Tu Nueva Web - Inicio</span>
+                                <svg class="tab-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"></path></svg>
+                            </div>
+                            <div class="browser-tab-add">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"></path></svg>
+                            </div>
+                        </div>
+                        <div class="browser-body">
+                            <div class="preview-display" id="svg-container">
+                                <div class="placeholder-preview">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" /></svg>
+                                    <p data-i18n="preview_placeholder">Sube una imagen para previsualizar</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="size-preview-row" id="size-preview-row" style="display:none;">
+                        <div class="size-preview-item">
+                            <img id="size-16" width="16" height="16" alt="16px">
+                            <span class="size-preview-label">16px</span>
+                        </div>
+                        <div class="size-preview-item">
+                            <img id="size-32" width="32" height="32" alt="32px">
+                            <span class="size-preview-label">32px</span>
+                        </div>
+                        <div class="size-preview-item">
+                            <img id="size-48" width="48" height="48" alt="48px">
+                            <span class="size-preview-label">48px</span>
+                        </div>
+                        <div class="size-preview-item">
+                            <img id="size-180" width="64" height="64" alt="180px">
+                            <span class="size-preview-label">180px</span>
+                        </div>
+                    </div>
+
+                    <div class="export-section">
+                        <h4 data-i18n="export_title">Exportar Favicon</h4>
+                        <div class="export-controls">
+                            <div class="format-selector">
+                                <label for="format-select" data-i18n="format">Formato:</label>
+                                <select id="format-select" class="modern-select">
+                                    <option value="ico" selected data-i18n="fmt_ico">ICO (Universal - 32×32)</option>
+                                    <option value="png" data-i18n="fmt_png">PNG (Alta Resolución - 512×512)</option>
+                                    <option value="svg" data-i18n="fmt_svg">SVG (Vectorial)</option>
+                                </select>
+                            </div>
+                            <button id="download-btn" class="btn primary" disabled>
+                                <span class="btn-text" data-i18n="btn_download">Descargar Favicon</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                                </svg>
+                            </button>
+                        </div>
+                        <p class="export-hint" id="export-hint" data-i18n="hint_ico">El formato clásico .ico de 32×32 px es compatible con todos los navegadores, incluidos los más antiguos.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <span data-i18n="footer_created">Creado por</span>
+                <a href="https://loge.es" target="_blank" rel="noopener" class="loge-brand-link">
+                    <img src="loge.png" alt="Loge" class="loge-logo-img">
+                </a>
+            </div>
+            <div class="footer-legal-links">
+                <a href="privacy.html" data-i18n="footer_privacy">Política de Privacidad</a>
+                <span class="footer-divider">·</span>
+                <a href="legal.html" data-i18n="footer_legal">Aviso Legal</a>
+                <span class="footer-divider">·</span>
+                <a href="cookies.html" data-i18n="footer_cookies">Política de Cookies</a>
+            </div>
+            <div class="footer-rights">
+                &copy; <span id="current-year">2026</span> Loge. <span data-i18n="footer_rights">Todos los derechos reservados.</span>
+            </div>
+        </div>
+    </footer>
+
+    <div id="toast" class="toast" aria-live="polite"></div>
+
+    <script src="i18n.js?v=2"></script>
+    <script src="script.js?v=2"></script>
+</body>
+</html>
